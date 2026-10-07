@@ -3,47 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <title>Book Recommender System</title>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <style>
+        .text-white {
+            color: white;
+        }
+
+        /* Book image */
+        .card-img-top {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background-color: white;
+            padding: 5px;
+        }
+
+        /* Book card */
+        .card {
+            height: 500px;
+            background-color: transparent;
+        }
+
+        /* Keep text inside card */
+        .card-body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Book title */
+        .book-title {
+            height: 45px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        /* Author, votes and rating */
+        .book-info {
+            margin: 5px 0;
+        }
+    </style>
 </head>
-<style>
-    .text-white{
-        color:white
-    }
-</style>
+
 <body style="background-color:#d889ef">
 
+    <!-- Navigation Bar -->
     <nav class="navbar" style="background-color:#f5f5f8">
-        <a class="navbar-brand">My Book recommender</a>
+
+        <a class="navbar-brand">My Book Recommender</a>
+
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/recommend">Recommend</a></li>
             <li><a>Contact</a></li>
         </ul>
+
     </nav>
 
+
+    <!-- Main Container -->
     <div class="container">
+
         <div class="row">
+
+            <!-- Heading -->
             <div class="col-md-12">
-                <h1 class="text-white" style="font-size:50px">Top 50 Books</h1>
+
+                <h1 class="text-white"
+                    style="font-size:50px">
+
+                    Top 50 Books
+
+                </h1>
+
             </div>
 
+
+            <!-- Books -->
             {% for i in range(book_name|length) %}
-                <div class="col-md-3" style="margin-top:50px">
+
+                <div class="col-md-3"
+                     style="margin-top:50px">
+
                     <div class="card">
+
                         <div class="card-body">
-                            <img class="card-img-top" src="{{ image[i] }}">
-                            <p class="text-white">{{ book_name[i] }}</p>
-                            <h4 class="text-white">{{ author[i] }}</h4>
-                            <h4 class="text-white">Votes - {{ votes[i] }}</h4>
-                            <h4 class="text-white">Rating - {{ rating[i] }}</h4>
+
+                            <!-- Book Image -->
+                            <img class="card-img-top"
+                                 src="{{ image[i] }}"
+                                 alt="{{ book_name[i] }}">
+
+
+                            <!-- Book Name -->
+                            <p class="text-white book-title">
+                                {{ book_name[i] }}
+                            </p>
+
+
+                            <!-- Author -->
+                            <h4 class="text-white book-info">
+                                {{ author[i] }}
+                            </h4>
+
+
+                            <!-- Votes -->
+                            <h4 class="text-white book-info">
+                                Votes - {{ votes[i] }}
+                            </h4>
+
+
+                            <!-- Rating -->
+                            <h4 class="text-white book-info">
+                                Rating - {{ rating[i] }}
+                            </h4>
+
                         </div>
+
                     </div>
+
                 </div>
+
             {% endfor %}
 
-
         </div>
+
     </div>
 
 </body>
